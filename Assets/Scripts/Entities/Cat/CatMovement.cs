@@ -32,12 +32,7 @@ public class CatMovement : MonoBehaviour
         cat = GetComponent<Cat>();
     }
 
-    void Start()
-    {
-        scale = transform.localScale.x;
-        if (GlobalVar.fromCafe)
-            transform.position = new Vector3(178f, -2.78f, 0f);
-    }
+    void Start() => scale = transform.localScale.x;
 
     void Update()
     {

@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 public class LightningBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject[] lights;
-    [SerializeField] Light2D lightScript;
+    Light2D lightScript;
 
     [SerializeField] bool turnLight = true;
 
@@ -15,22 +15,11 @@ public class LightningBehaviour : MonoBehaviour
 
     private void Update()
     {
+        foreach(GameObject light in lights)
+            light.SetActive(turnLight);
         if (turnLight)
-        {
-            foreach(GameObject light in lights)
-                light.SetActive(true);
             lightScript.intensity = 0.2f;
-        }
         else
-        {
-            foreach (GameObject light in lights)
-                light.SetActive(false);
             lightScript.intensity = 1f;
-        }
-    }
-
-    public void Turn(bool state)
-    {
-        turnLight = state;
     }
 }

@@ -24,7 +24,6 @@ public class SceneChanger : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("Cafe"))
         {
             SceneManager.LoadScene("MainScene");
-            GlobalVar.fromCafe = true;
         }
     }
 }
