@@ -1,35 +1,36 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CatMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    Cat cat;
+    private Player player;
 
     [Header("Events")]
-    [SerializeField] UnityEvent Dead;
+    [SerializeField] private UnityEvent Dead;
 
-    [SerializeField] ContactFilter2D platform;
-
-    new Rigidbody2D rigidbody;
-    //Animator animator;
+    [SerializeField] private ContactFilter2D platform;
     //[SerializeField] VectorValue position;
 
-    bool isGrounded => rigidbody.IsTouching(platform);
+    private new Rigidbody2D rigidbody;
+    private Animator animator;
+
+    private bool isGrounded => rigidbody.IsTouching(platform);
 
     string currentState;
     float scale;
 
-    const string IDLE = "cat_stopping";
-    const string WALK = "cat_walk";
-    const string RUN = "cat_run";
-    const string JUMP = "Cat_start_run";
+    private const string IDLE = "idle";
+    private const string WALK = "walk";
+    private const string RUN = "run";
+    private const string JUMP = "jump";
+    private const string TAKE = "take";
 
     void Awake()
     {
         //transform.position = position.GetInitialValue();
         rigidbody = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
-        cat = GetComponent<Cat>();
+        player = GetComponent<Player>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Start() => scale = transform.localScale.x;
@@ -37,10 +38,21 @@ public class CatMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetButton("Horizontal"))
-            Walk();
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+                Move(player.GetRunSpeed());
+            else
+                Move(player.GetWalkSpeed());
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
             Jump();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //Test
+            ChangeAnimationState(TAKE);
+        }
     }
 
     void FixedUpdate()
@@ -55,7 +67,12 @@ public class CatMovement : MonoBehaviour
         if (isGrounded)
         {
             if (Input.GetButton("Horizontal"))
-                ChangeAnimationState(WALK);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    ChangeAnimationState(RUN);
+                else
+                    ChangeAnimationState(WALK);
+            }
             else
             {
                 //animationDelay = animator.GetCurrentAnimatorClipInfo(0).Length;
@@ -66,16 +83,13 @@ public class CatMovement : MonoBehaviour
             ChangeAnimationState(JUMP);
     }
 
-    void Walk()
+    void Move(float speed)
     {
         Vector3 direction = transform.right * Input.GetAxis("Horizontal");
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, cat.GetWalkSpeed() * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
     }
 
-    void Jump()
-    {
-        rigidbody.AddForce(transform.up * cat.GetJumpForce(), ForceMode2D.Impulse);
-    }
+    void Jump() => rigidbody.AddForce(transform.up * player.GetJumpForce(), ForceMode2D.Impulse);
 
     //void Die() => Dead.Invoke();
 
@@ -85,7 +99,7 @@ public class CatMovement : MonoBehaviour
         if (currentState == newState) return;
 
         //play animation
-        //animator.Play(newState);
+        animator.Play(newState);
 
         //reassign the current state
         currentState = newState;
