@@ -17,13 +17,14 @@ public class SceneChanger : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        if (SceneManager.GetActiveScene().name.Equals("MainScene"))
+        /*if (SceneManager.GetActiveScene().name.Equals("MainScene"))
         {
             SceneManager.LoadScene("Cafe");
         }
         if (SceneManager.GetActiveScene().name.Equals("Cafe"))
         {
             SceneManager.LoadScene("MainScene");
-        }
+        }*/
+        SceneManager.LoadScene("CatSceneEnd");
     }
 }

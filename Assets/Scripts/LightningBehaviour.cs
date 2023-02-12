@@ -15,8 +15,9 @@ public class LightningBehaviour : MonoBehaviour
 
     private void Update()
     {
-        foreach(GameObject light in lights)
-            light.SetActive(turnLight);
+        if (lights.Length> 0)
+            foreach(GameObject light in lights)
+                light.SetActive(turnLight);
         if (turnLight)
             lightScript.intensity = 0.2f;
         else
