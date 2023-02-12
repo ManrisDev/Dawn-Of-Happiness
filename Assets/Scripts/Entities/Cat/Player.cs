@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Cat : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("Characteristics")]
     [SerializeField] private float health = 10f;
