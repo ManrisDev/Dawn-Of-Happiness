@@ -15,9 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     private bool isGrounded => rigidbody.IsTouching(platform);
+    private bool takeAnimationIsPlaying = false;
 
-    string currentState;
-    float scale;
+    private string currentState;
+    private float animationDelay;
+    private float scale;
 
     private const string IDLE = "idle";
     private const string WALK = "walk";
@@ -51,12 +53,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             //Test
-            ChangeAnimationState(TAKE);
+            Interaction();
         }
     }
 
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.E))
+        {
+            animationDelay = animator.GetCurrentAnimatorClipInfo(0).Length;
+            ChangeAnimationState(TAKE);
+            takeAnimationIsPlaying = true;
+            Invoke("Change", animationDelay);
+        }
+
         float direction = Input.GetAxis("Horizontal");
 
         if (direction > 0)
@@ -75,12 +85,22 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                //animationDelay = animator.GetCurrentAnimatorClipInfo(0).Length;
                 ChangeAnimationState(IDLE);
             }
+
         }
         else
             ChangeAnimationState(JUMP);
+    }
+
+    private void Change()
+    {
+        takeAnimationIsPlaying = false;
+    }
+
+    private void Interaction()
+    {
+
     }
 
     void Move(float speed)
@@ -97,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //stop the same animation from interrupting itself
         if (currentState == newState) return;
+
+        if (takeAnimationIsPlaying) return;
 
         //play animation
         animator.Play(newState);
