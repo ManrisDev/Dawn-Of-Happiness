@@ -191,8 +191,8 @@ Canvas:
   m_GameObject: {fileID: 29248091}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1526879867}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -283,18 +283,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u041D\u0430\u0434 \u0438\u0433\u0440\u043E\u0439 \u0440\u0430\u0431\u043E\u0442\u0430\u043B\u0438\n\n\u0425\u0443\u0434\u043E\u0436\u043D\u0438\u043A\u0438\n\u041C\u0430\u0440\u0433\u0430\u0440\u0438\u0442\u0430
-    \u0410\u043B\u0435\u043A\u0441\u0435\u0435\u0432\u0430\r\n\u041C\u0430\u0440\u0438\u044F
-    \u0412\u0438\u0445\u043B\u044F\u0435\u0432\u0430\n\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0430
-    \u0413\u043D\u0435\u0443\u0448\u0435\u0432\u0430\n\n\u0417\u0432\u0443\u043A\u043E\u0440\u0435\u0436\u0438\u0441\u0441\u0435\u0440
-    / \u0441\u0430\u0443\u043D\u0434 \u0434\u0438\u0437\u0430\u0439\u043D\u0435\u0440:\r\n\u0410\u043D\u0434\u0440\u0435\u0439
-    \u0421\u0430\u0432\u0438\u043D\u044B\u0445\n\n\u0421\u0446\u0435\u043D\u0430\u0440\u0438\u0441\u0442\u044B
-    (\u0420\u0430\u0441\u043F\u0438\u0448\u0435\u043C \u043A\u0442\u043E \u0447\u0442\u043E
-    \u0434\u0435\u043B\u0430\u043B)\n\u0421\u043E\u0444\u044C\u044F \u041A\u0440\u043E\u0442\u043E\u0432\u0430
-    (\u0434\u0438\u0430\u043B\u043E\u0433\u0438, \u043F\u0440\u0435\u0434\u044B\u0441\u0442\u043E\u0440\u0438\u044F,
-    \u0440\u0435\u0434\u0430\u043A\u0442\u0443\u0440\u0430 \u0442\u0435\u043A\u0441\u0442\u0430)\r\n\u0412\u0441\u0435
-    \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u0438 \u043A\u043E\u043C\u0430\u043D\u0434\u044B
-    \u0442\u0430\u043A\u0436\u0435 \u0434\u0443\u043C\u0430\u043B\u0438 \u043D\u0430\u0434
-    \u0441\u044E\u0436\u0435\u0442\u043E\u043C :)\n\n\u041A\u043E\u0434\u0435\u0440\u044B\n\u041F\u043E\u043B\u0435\u0441\u043A\u043E
+    \n\u041C\u0430\u0440\u0438\u044F \n\u0418\u0440\u0430\n\n\u0421\u0446\u0435\u043D\u0430\u0440\u0438\u0441\u0442\u044B\n\u041C\u0430\u0440\u0438\u044F,
+    \u0410\u043D\u0434\u0440\u0435\u0439\n\n\u041A\u043E\u0434\u0435\u0440\u044B\n\u041F\u043E\u043B\u0435\u0441\u043A\u043E
     \u0412\u0430\u0434\u0438\u043C | Manris\n\u041D\u0438\u043A\u0438\u0442\u0430
     \u0415\u0433\u043E\u0440\u043E\u0432 | Grumak\n\n\n\n\n\n\n\u0421\u043F\u0430\u0441\u0438\u0431\u043E
     \u0437\u0430 \u043F\u0440\u043E\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u0435!
@@ -307,8 +297,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -361,7 +351,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -699.7136, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -513,14 +503,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e0aeaa4404020e146a49c82dfba0ecdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cba00e880bdb0454e84384bdfef8093e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
