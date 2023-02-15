@@ -7,12 +7,9 @@ public class TestDialogue : MonoBehaviour
 {
     public NPCConversation myConversation;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Start ()
     {
-        if (collision.tag == "Player")
-        {
-            ConversationManager.Instance.StartConversation(myConversation);
-            Destroy(this.gameObject);
-        }
+        ConversationManager.Instance.StartConversation(myConversation);
+        Debug.Log("Начался первый диалог");
     }
 }
