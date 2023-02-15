@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class HudAnimationBehaviour : MonoBehaviour
 {
+    [SerializeField] private GameObject panel;
+
     [SerializeField] private string mouseOverAnimation;
     [SerializeField] private string mouseExitAnimation;
 
@@ -14,17 +18,9 @@ public class HudAnimationBehaviour : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void OnMouseOver()
-    {
-        ChangeAnimationState(mouseOverAnimation);
-        Debug.Log("Over");
-    }
+    public void OnMouseOver() => ChangeAnimationState(mouseOverAnimation);
 
-    public void OnMouseExit()
-    {
-        ChangeAnimationState(mouseExitAnimation);
-        Debug.Log("Exit");
-    }
+    public void OnMouseExit() => ChangeAnimationState(mouseExitAnimation);
 
     public void ChangeAnimationState(string animationName)
     {
@@ -36,5 +32,14 @@ public class HudAnimationBehaviour : MonoBehaviour
 
         //reassign the current state
         currentAnimation = animationName;
+    }
+
+    public void Click()
+    {
+        panel.SetActive(!panel.activeSelf);
+        if (panel.activeSelf && panel.name.Equals("Inventory"))
+        {
+            FindObjectOfType<Inventory>().UpdateInventory();
+        }
     }
 }
