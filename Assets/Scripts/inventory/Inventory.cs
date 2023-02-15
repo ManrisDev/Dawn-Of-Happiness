@@ -8,7 +8,6 @@ public class Inventory : MonoBehaviour
 {
     private DataBase dataBase;
     private new Camera camera;
-
     
     [SerializeField] private List<ItemInventory> items = new List<ItemInventory>();
 
@@ -40,11 +39,6 @@ public class Inventory : MonoBehaviour
     {
         if (items.Count == 0)
             AddGraphics();
-
-        for (int i = 0; i < maxItemsCount; i++) //Test inventory
-        {
-            AddItem(i, dataBase.items[Random.Range(0, dataBase.items.Count)], Random.Range(1, 99));
-        }
     }
 
     private void Update()
@@ -62,7 +56,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void SearchForSameItem(Item item, int count)
+    public void AddItem(int id, Item item, int count)
     {
         for (int i = 0; i < maxItemsCount; i++)
         {
@@ -72,7 +66,7 @@ public class Inventory : MonoBehaviour
                 if (items[i].count > stackCount)
                 {
                     count = items[i].count - stackCount;
-                    items[i].count = stackCount / 2;
+                    items[i].count = stackCount;
                 }
                 else
                 {
@@ -88,27 +82,25 @@ public class Inventory : MonoBehaviour
             {
                 if (items[i].id == 0)
                 {
-                    AddItem(i, item, count);
+                    items[id].id = item.id;
+                    items[id].count = count;
+                    items[id].itemGameObject.GetComponent<Image>().sprite = item.image;
+
+                    /*if (count > 1 && item.id != 0)
+                    {
+                        items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
+                    }
+                    else
+                    {
+                        items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    }*/
+
                     i = maxItemsCount;
                 }
             }
         }
-    }
 
-    public void AddItem(int id, Item item, int count)
-    {
-        items[id].id = item.id;
-        items[id].count = count;
-        items[id].itemGameObject.GetComponent<Image>().sprite = item.image;
-
-        if (count > 1 && item.id != 0)
-        {
-            items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
-        }
-        else
-        {
-            items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
-        }
+        UpdateInventory();
     }
 
     public void AddInventoryItem(int id, ItemInventory inventoryItem)
@@ -131,7 +123,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < maxItemsCount; i++)
         {
-            GameObject newItem = Instantiate(itemPrefab, inventoryMainObject.transform) as GameObject;
+            GameObject newItem = Instantiate(itemPrefab, inventoryMainObject.transform);
 
             newItem.name = i.ToString();
 
@@ -201,7 +193,6 @@ public class Inventory : MonoBehaviour
 
                 itemInventory.itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = itemInventory.count.ToString();
             }
-
 
             currentId = -1;
 
