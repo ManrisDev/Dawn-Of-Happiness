@@ -50,11 +50,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
             Jump();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             //Test
             Interaction();
-        }
+        }*/
     }
 
     void FixedUpdate()
@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             animationDelay = animator.GetCurrentAnimatorClipInfo(0).Length;
             ChangeAnimationState(TAKE);
             takeAnimationIsPlaying = true;
+            enabled = false;
             Invoke("Change", animationDelay);
         }
 
@@ -84,10 +85,7 @@ public class PlayerMovement : MonoBehaviour
                     ChangeAnimationState(WALK);
             }
             else
-            {
                 ChangeAnimationState(IDLE);
-            }
-
         }
         else
             ChangeAnimationState(JUMP);
@@ -96,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
     private void Change()
     {
         takeAnimationIsPlaying = false;
+        enabled = true;
     }
 
     private void Interaction()
