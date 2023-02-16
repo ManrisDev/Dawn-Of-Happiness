@@ -36,8 +36,8 @@ public class HudBehaviour : MonoBehaviour
         { 
             if (panel.name.Equals("Inventory"))
                 FindObjectOfType<Inventory>().UpdateInventory();
-            else if (panel.name.Equals("MemoryBook"))
-                FindObjectOfType<GameManager>().ShowHud(false);
+            //else if (panel.name.Equals("MemoryBook"))
+                //FindObjectOfType<GameManager>().ShowHud(false);
         }  
     }
 }

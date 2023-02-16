@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] UnityEvent Pause;
     [SerializeField] UnityEvent Play;
 
-    [SerializeField] private GameObject hudPanel;
-    [SerializeField] private GameObject memoryBookPanel;
-
     bool pause = false;
 
     private void Update()
@@ -36,19 +33,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Pause.Invoke();
     }
-
-    public void LoadScene(string name) => SceneManager.LoadScene(name);
-
     public void MainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void ShowHud(bool state)
-    {
-        hudPanel.SetActive(state);
-        memoryBookPanel.SetActive(!state);
-        FindObjectOfType<PlayerMovement>().enabled = state;
     }
 }
