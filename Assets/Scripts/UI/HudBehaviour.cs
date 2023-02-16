@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
-public class HudAnimationBehaviour : MonoBehaviour
+public class HudBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
 
@@ -13,12 +11,9 @@ public class HudAnimationBehaviour : MonoBehaviour
 
     private string currentAnimation;
 
-    private void Awake()
-    {
-        animator = GetComponentInChildren<Animator>();
-    }
+    private void Awake() => animator = GetComponentInChildren<Animator>();
 
-    public void OnMouseOver() => ChangeAnimationState(mouseOverAnimation);
+    public void OnMouseEnter() => ChangeAnimationState(mouseOverAnimation);
 
     public void OnMouseExit() => ChangeAnimationState(mouseExitAnimation);
 
@@ -34,12 +29,15 @@ public class HudAnimationBehaviour : MonoBehaviour
         currentAnimation = animationName;
     }
 
-    public void Click()
+    public void Press()
     {
         panel.SetActive(!panel.activeSelf);
-        if (panel.activeSelf && panel.name.Equals("Inventory"))
-        {
-            FindObjectOfType<Inventory>().UpdateInventory();
-        }
+        if (panel.activeSelf)
+        { 
+            if (panel.name.Equals("Inventory"))
+                FindObjectOfType<Inventory>().UpdateInventory();
+            else if (panel.name.Equals("MemoryBook"))
+                FindObjectOfType<GameManager>().ShowHud(false);
+        }  
     }
 }
