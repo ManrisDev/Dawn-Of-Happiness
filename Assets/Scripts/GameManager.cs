@@ -33,14 +33,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Pause.Invoke();
     }
-
-    public void LoadEnd()
-    {
-        SceneManager.LoadScene("CatSceneEnd");
-    }
-
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }

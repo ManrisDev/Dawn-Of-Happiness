@@ -39,6 +39,12 @@ public class Inventory : MonoBehaviour
     {
         if (items.Count == 0)
             AddGraphics();
+        if (InventorySaver.wasSaved)
+        {
+            List<ItemInventory> savedItems = InventorySaver.items;
+            for (int i = 0; i < maxItemsCount; i++)
+                AddItem(savedItems[i].id, dataBase.items[savedItems[i].id], savedItems[i].count);
+        }
     }
 
     private void Update()
@@ -86,16 +92,7 @@ public class Inventory : MonoBehaviour
                     items[id].count = count;
                     items[id].itemGameObject.GetComponent<Image>().sprite = item.image;
 
-                    /*if (count > 1 && item.id != 0)
-                    {
-                        items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
-                    }
-                    else
-                    {
-                        items[id].itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
-                    }*/
-
-                    i = maxItemsCount;
+                    break;
                 }
             }
         }
@@ -156,6 +153,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void SaveInventory()
+    {
+        for (int i = 0; i < maxItemsCount; i++)
+        {
+            InventorySaver.items.Add(items[i]);
+            InventorySaver.wasSaved = true;
+        }
+    }
+
     public void SelectObject()
     {
         if (currentId == -1)
@@ -171,6 +177,8 @@ public class Inventory : MonoBehaviour
         {
             ItemInventory itemInventory = items[int.Parse(eventSystem.currentSelectedGameObject.name)];
 
+            int selectedId = int.Parse(eventSystem.currentSelectedGameObject.name);
+
             if (currentItem.id != itemInventory.id)
             {
                 AddInventoryItem(currentId, itemInventory);
@@ -179,19 +187,25 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                int sum = itemInventory.count + currentItem.count;
-                if (sum <= stackCount)
+                if (currentId != selectedId)
                 {
-                    itemInventory.count += currentItem.count;
-                }
-                else
-                {
-                    AddItem(currentId, dataBase.items[itemInventory.id], sum - stackCount);
+                    int sum = itemInventory.count + currentItem.count;
+                    if (sum <= stackCount)
+                    {
+                        itemInventory.count += currentItem.count;
+                    }
+                    else
+                    {
+                        AddItem(currentId, dataBase.items[itemInventory.id], sum - stackCount);
 
-                    itemInventory.count = stackCount;
-                }
+                        itemInventory.count = stackCount;
+                    }
 
-                itemInventory.itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = itemInventory.count.ToString();
+                    if (itemInventory.count != 0)
+                        itemInventory.itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = itemInventory.count.ToString();
+                    else
+                        itemInventory.itemGameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                }
             }
 
             currentId = -1;
