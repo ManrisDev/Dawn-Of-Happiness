@@ -7,15 +7,13 @@ public class HudBehaviour : MonoBehaviour
     [SerializeField] private string mouseOverAnimation;
     [SerializeField] private string mouseExitAnimation;
 
-    private Animator animator;
+    [SerializeField] private Animator hudAnimator;
 
     private string currentAnimation;
 
-    private void Awake() => animator = GetComponentInChildren<Animator>();
+    public void Highlighted() => ChangeAnimationState(mouseOverAnimation);
 
-    public void OnMouseEnter() => ChangeAnimationState(mouseOverAnimation);
-
-    public void OnMouseExit() => ChangeAnimationState(mouseExitAnimation);
+    public void Normal() => ChangeAnimationState(mouseExitAnimation);
 
     public void ChangeAnimationState(string animationName)
     {
@@ -23,7 +21,7 @@ public class HudBehaviour : MonoBehaviour
         if (currentAnimation == animationName) return;
 
         //play animation
-        animator.Play(animationName);
+        hudAnimator.Play(animationName);
 
         //reassign the current state
         currentAnimation = animationName;
@@ -36,8 +34,6 @@ public class HudBehaviour : MonoBehaviour
         { 
             if (panel.name.Equals("Inventory"))
                 FindObjectOfType<Inventory>().UpdateInventory();
-            //else if (panel.name.Equals("MemoryBook"))
-                //FindObjectOfType<GameManager>().ShowHud(false);
         }  
     }
 }
