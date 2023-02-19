@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class MemoryBook : MonoBehaviour
 {
+    [SerializeField] private GameObject hud;
+    [SerializeField] private PlayerMovement playerMovement;
+
     [SerializeField] private Button[] levelButton;
 
     //private int lastLevelIndex;
@@ -46,9 +49,20 @@ public class MemoryBook : MonoBehaviour
         }
     }
 
-    public void LoadTo(string name)
+    public void LoadTo(string name) => SceneManager.LoadScene(name);
+
+    public void Open()
     {
-        SceneManager.LoadScene(name);
+        hud.SetActive(false);
+        gameObject.SetActive(true);
+        playerMovement.enabled = false;
+    }
+
+    public void Close()
+    {
+        hud.SetActive(true);
+        gameObject.SetActive(false);
+        playerMovement.enabled = true;
     }
 
     //Может быть использован в дальнейшем

@@ -1,12 +1,8 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Player player;
-
-    [Header("Events")]
-    [SerializeField] private UnityEvent Dead;
 
     [SerializeField] private ContactFilter2D platform;
     //[SerializeField] VectorValue position;
@@ -109,8 +105,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Jump() => rigidbody.AddForce(transform.up * player.GetJumpForce(), ForceMode2D.Impulse);
-
-    //void Die() => Dead.Invoke();
 
     void ChangeAnimationState(string newState)
     {
