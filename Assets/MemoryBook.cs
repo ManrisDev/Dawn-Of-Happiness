@@ -15,7 +15,6 @@ public class MemoryBook : MonoBehaviour
     private void Start()
     {
         levelComplete = PlayerPrefs.GetInt("LevelComplete");
-        //lastLevelIndex = firstLevelIndex + levelsCount - 1;
 
         Debug.Log(levelComplete);
 
@@ -29,16 +28,16 @@ public class MemoryBook : MonoBehaviour
             case 2:
                 levelButton[0].interactable = true;
                 break;
-            case 3:
+            case 5:
                 levelButton[0].interactable = true;
                 levelButton[1].interactable = true;
                 break;
-            case 4:
+            case 7:
                 levelButton[0].interactable = true;
                 levelButton[1].interactable = true;
                 levelButton[2].interactable = true;
                 break;
-            case 5:
+            case 8:
                 levelButton[0].interactable = true;
                 levelButton[1].interactable = true;
                 levelButton[2].interactable = true;

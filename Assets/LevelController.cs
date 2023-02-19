@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private float loadDelay;
-    [SerializeField] private int levelsCount;
 
     public static LevelController instance = null;
 
@@ -20,16 +19,24 @@ public class LevelController : MonoBehaviour
         levelComplete = PlayerPrefs.GetInt("LevelComplete");  
     }
 
-    public void isEndGame()
+    public void isEndGame(int sceneToLoad)
     {
-        if (sceneIndex == levelsCount - 1)
-            Invoke("LoadCutSceneEnd", loadDelay);
-        else
+        if (sceneToLoad == -1)
         {
-            if (levelComplete < sceneIndex)
+            if (sceneIndex == 8)
+            {
                 PlayerPrefs.SetInt("LevelComplete", sceneIndex);
-            Invoke("NextLevel", loadDelay);
+                Invoke("LoadCutSceneEnd", loadDelay);
+            }
+            else
+            {
+                if (levelComplete < sceneIndex)
+                    PlayerPrefs.SetInt("LevelComplete", sceneIndex);
+                Invoke("NextLevel", loadDelay);
+            }
         }
+        else
+            SceneManager.LoadScene(sceneToLoad);
     }
 
     public void NextLevel() => SceneManager.LoadScene(sceneIndex + 1);
