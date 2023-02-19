@@ -1,3 +1,4 @@
+using DialogueEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,8 +10,10 @@ public class MemoryBook : MonoBehaviour
 
     [SerializeField] private Button[] levelButton;
 
+
     //private int lastLevelIndex;
     private int levelComplete;
+
 
     private void Start()
     {
