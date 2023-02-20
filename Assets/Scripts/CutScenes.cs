@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CutScenes : MonoBehaviour
 {
-    /*public int actualCutScene;
+    public int actualCutScene;
     public Sprite[] cutScenes;
     public Image MainCutScene;
     public bool isLastCutScene = false;
@@ -22,16 +23,10 @@ public class CutScenes : MonoBehaviour
                 FindObjectOfType<GameManager>().LoadCredits();
             }
             else
-            {
-                GlobalVar.Set_level_index(3);
-                SceneManager.LoadScene("Loading");
+            {;
+                SceneManager.LoadScene("Memory_1");
             }
         }
         MainCutScene.sprite = cutScenes[actualCutScene];
-    }*/
-
-    public void NextSlide()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

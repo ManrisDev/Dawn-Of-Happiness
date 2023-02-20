@@ -31,7 +31,7 @@ public class MemoryBook : MonoBehaviour
             case 2:
                 levelButton[0].interactable = true;
                 break;
-            case 5:
+            case 4:
                 levelButton[0].interactable = true;
                 levelButton[1].interactable = true;
                 break;

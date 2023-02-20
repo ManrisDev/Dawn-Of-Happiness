@@ -3,21 +3,23 @@ using UnityEngine.Video;
 
 public class FollowingTheStory : MonoBehaviour
 {
-    [SerializeField] private VideoPlayer firstMemoryVideo;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private LevelController levelController;
 
     private int memoryComplete = 0;
+
+    public void DialogueEnd()
+    {
+        playerMovement.enabled = true;
+    }
 
     public void SaveMemory()
     {
         switch (memoryComplete)
         {
             case 0:
-                firstMemoryVideo.enabled = true;
-                playerMovement.enabled = false;
-                Invoke("NextScene", (float)firstMemoryVideo.clip.length);
                 memoryComplete++;
+                NextScene();
                 break;
             case 1:
                 break;
