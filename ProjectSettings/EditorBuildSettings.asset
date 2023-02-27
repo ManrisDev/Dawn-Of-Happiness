@@ -6,33 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Application/Scenes/Build/MainMenu.unity
     guid: 813c8898b0fe00f46bcd98665ad1ef4c
   - enabled: 1
-    path: Assets/Scenes/CutSceneStart.unity
+    path: Assets/Application/Scenes/Build/CutSceneStart.unity
     guid: 8deba612bbb802c4888926470a26f30c
   - enabled: 1
-    path: Assets/Scenes/Memories/Memory_1.unity
+    path: Assets/Application/Scenes/Build/Memories/Memory_1.unity
     guid: 3ac9b148664661d499fb9f5d40d22961
   - enabled: 1
-    path: Assets/Scenes/Hallways/Hallway_1.unity
+    path: Assets/Application/Scenes/Build/Hallways/Hallway_1.unity
     guid: 038beda4104a6c3478cfb79872adc495
   - enabled: 1
-    path: Assets/Scenes/Memories/Memory_2.unity
+    path: Assets/Application/Scenes/Build/Memories/Memory_2.unity
     guid: 4f194405bedb2c34a9692ead28c98f77
   - enabled: 1
-    path: Assets/Scenes/Hallways/Hallway_2.unity
+    path: Assets/Application/Scenes/Build/Hallways/Hallway_2.unity
     guid: 4c50bd4d150b38d428a1e57ce515333b
   - enabled: 1
-    path: Assets/Scenes/Memories/Memory_3.unity
+    path: Assets/Application/Scenes/Build/Memories/Memory_3.unity
     guid: f7a04957fa8c0714a98c02ddd5062a35
   - enabled: 1
-    path: Assets/Scenes/Memories/Memory_4.unity
+    path: Assets/Application/Scenes/Build/Memories/Memory_4.unity
     guid: e15d546c078aaab4a88e6020ef2c756c
   - enabled: 1
-    path: Assets/Scenes/CutSceneEnd.unity
+    path: Assets/Application/Scenes/Build/CutSceneEnd.unity
     guid: bf84d202fe73b8440963ca2cc5bbe5b3
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
+    path: Assets/Application/Scenes/Build/Credits.unity
     guid: 466435bc66cf3834e808b8f92ef0a4a7
   m_configObjects: {}
